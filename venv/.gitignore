@@ -1,0 +1,10 @@
+# mine
+/venv/Lib
+/venv/Scripts
+/pyvenv.cfg
+/data/
+/work_logs*.
+
+
+
+
