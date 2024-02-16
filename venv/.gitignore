@@ -1,8 +1,8 @@
 # mine
-/venv/Lib
-/venv/Scripts
+/venv/Lib/*
+/venv/Scripts/*
 /pyvenv.cfg
-/data/
+/data/*
 /work_logs*.
 
 

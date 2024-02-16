@@ -29,3 +29,24 @@ def testConnection(client):
 
     for row in query:
         print(row)
+
+
+def loadDataset():
+    job_config = bigquery.LoadJobConfig(source_format=bigquery.SourceFormat.CSV,
+                                        skip_leading_rows=1,
+                                        autodetect=True)
+    with open(r"D:\1. Other\1. Work\1. Programming\1. Projects\EdgeCenter Google Docs stat\data\jetstat.csv", "rb") as f:
+        job = client.load_table_from_file(f, "continual-block-407808.EdgeCenter.Jetstat_data", job_config=job_config)
+
+    job.result()
+
+    table = client.get_table("continual-block-407808.EdgeCenter.Jetstat_data")
+
+    print(
+        "Loaded {} rows and {} columns to {}".format(
+            table.num_rows, len(table.schema), "continual-block-407808.EdgeCenter.Jetstat_data"
+        )
+    )
+
+
+
