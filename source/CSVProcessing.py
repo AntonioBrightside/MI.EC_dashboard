@@ -1,18 +1,7 @@
 import pandas as pd
 
 
-def makeDF():
-    """
-    Load *CSV file from /data directory.
-    :return: DataFrame
-    """
-    df = pd.read_csv("data/jetstat.csv", delimiter=",", low_memory=False)
-    pd.set_option('display.max_columns', None)
-
-    return df
-
-
-def preProcessingDF(df):
+def preProcessingJetStatDF(df):
     """
     Drop all n/a rows and convert all columns into right type
     :param df: DataFrame
@@ -69,7 +58,7 @@ def preProcessingDF(df):
     return df
 
 
-def createNewColumns(df):
+def createNewColumnsJetStatDF(df):
     """
     Add new techical columns: UID, PRODUCT, SOURCE, TYPE, KW_GROUP, WEEK_NUMBER
     :param df: DataFrame
@@ -83,7 +72,7 @@ def createNewColumns(df):
     # TODO: Почему-то при переносе в DEF не перевело колонки в нужный тип. Остался Object
     for num, column in enumerate(columnsToAdd, start=1):
         df.insert(num, column, 'str')
-        df[column] = df[column].astype('str')
+        df[column] = df[column].astype('string')
 
     for num, cell in enumerate(df['Название кампании'], start=0):
         campaignName = cell.lower().split(sep='_')
@@ -114,4 +103,3 @@ def createNewColumns(df):
         df['KW_GROUP'].loc[num] = keyWordName[0]
 
     return df
-
